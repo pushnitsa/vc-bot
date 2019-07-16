@@ -17,3 +17,7 @@
 8. Enjoy!
 
 https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-deploy-az-cli?view=azure-bot-service-4.0
+
+## Bot authorization
+
+When you first contact to bot, it will send you your identifier. You need put identifier to user's dynamic property (BotUserName) and reindex contact entity, and try to auth in the bot.
