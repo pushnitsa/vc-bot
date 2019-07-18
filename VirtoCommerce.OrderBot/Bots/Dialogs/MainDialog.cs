@@ -30,7 +30,7 @@ namespace VirtoCommerce.OrderBot.Bots.Dialogs
         {
             var promptOptions = new PromptOptions
             {
-                Prompt = MessageFactory.Text("I am VirtoCommerce order bot. Choose what you want to do."),
+                Prompt = MessageFactory.Text("I'm a Virto Commerce order bot. What do you want to do?"),
                 Choices = new[] {new Choice { Value = NewOrder }, new Choice { Value = TalkToSupport } }
             };
             

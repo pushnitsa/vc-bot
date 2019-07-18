@@ -65,24 +65,6 @@ namespace VirtoCommerce.OrderBot.Builder
             }
         }
 
-        public async Task<dto.LineItem[]> GetLineItemsFromCartAsync()
-        {
-            await LoadOrCreateNewTransientCart();
-
-            return Cart.Items.Select(l => new dto.LineItem
-            {
-                CatalogId = l.CatalogId,
-                CategoryId = l.CategoryId,
-                Code = l.Sku,
-                Price = Convert.ToDecimal(l.ListPrice),
-                Currency = l.Currency,
-                Name = l.Name,
-                ProductId = l.ProductId,
-                ImgUrl = l.ImageUrl,
-                Quantity = l.Quantity ?? 0
-            }).ToArray();
-        }
-
         public async Task SaveCartAsync()
         {
             await LoadOrCreateNewTransientCart();
@@ -105,6 +87,8 @@ namespace VirtoCommerce.OrderBot.Builder
             {
                 Id = Cart.Id,
                 Name = Cart.Name,
+                Total = Convert.ToDecimal(Cart.Total),
+                Currency = Cart.Currency,
                 Items = Cart
                     .Items
                     .Select(i => new dto.LineItem
@@ -169,6 +153,12 @@ namespace VirtoCommerce.OrderBot.Builder
         }
 
         public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
         {
             _customer = null;
             _cart = null;

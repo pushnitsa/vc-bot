@@ -5,7 +5,7 @@ using VirtoCommerce.OrderBot.Bots.Dialogs.DialogInjector.Handlers;
 
 namespace VirtoCommerce.OrderBot.Bots.Dialogs.DialogInjector
 {
-    public class MessageHandlerKeeper : IMessageHandlerStorage, IMessageHandlerReciever
+    public class MessageHandlerKeeper : IMessageHandlerStorage, IMessageHandlerReceiver
     {
         private readonly ICollection<IMessageHandler> _messageHandlerCollection = new List<IMessageHandler>();
 

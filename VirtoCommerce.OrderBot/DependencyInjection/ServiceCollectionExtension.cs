@@ -49,7 +49,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddSingleton<AddToCartMessageHandler>();
 
             services.AddSingleton<MessageHandlerKeeper>();
-            services.AddSingleton<IMessageHandlerReciever>(provider => provider.GetService<MessageHandlerKeeper>());
+            services.AddSingleton<IMessageHandlerReceiver>(provider => provider.GetService<MessageHandlerKeeper>());
             services.AddSingleton<IMessageHandlerStorage>(provider => provider.GetService<MessageHandlerKeeper>());
             services.AddSingleton<ICartBuilderFactory, CartBuilderFactory>();
             services.AddSingleton<IProductFetcher, ProductFetcher>();

@@ -4,7 +4,6 @@ using Microsoft.Bot.Builder.Dialogs.Choices;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using VirtoCommerce.OrderBot.AutoRestClients.CustomerModuleApi;
 using VirtoCommerce.OrderBot.Bots.Models;
 using VirtoCommerce.OrderBot.Security;
 
@@ -14,11 +13,9 @@ namespace VirtoCommerce.OrderBot.Bots.Dialogs
     {
         private readonly IAuthorizationService _authorizationService;
         private readonly ConversationState _conversationState;
-        private readonly ICustomerModule _customerModule;
 
         public AuthDialog(
             IAuthorizationService authService,
-            ICustomerModule customerModule,
             ConversationState conversationState,
             MainDialog mainDialog
             ) 
@@ -26,7 +23,6 @@ namespace VirtoCommerce.OrderBot.Bots.Dialogs
         {
             _authorizationService = authService;
             _conversationState = conversationState;
-            _customerModule = customerModule;
 
             AddDialog(new ChoicePrompt(nameof(ChoicePrompt)));
             AddDialog(mainDialog);

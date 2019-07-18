@@ -2,7 +2,7 @@
 
 namespace VirtoCommerce.OrderBot.Bots.Dialogs.DialogInjector
 {
-    public interface IMessageHandlerReciever
+    public interface IMessageHandlerReceiver
     {
         IMessageHandler GetHandler(string message);
     }

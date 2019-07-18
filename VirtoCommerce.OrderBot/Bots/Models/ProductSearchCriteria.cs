@@ -4,6 +4,8 @@
     {
         public string SearchPhrase { get; set; }
 
+        public string StoreId { get; set; }
+
         public int Take { get; set; } = 20;
     }
 }

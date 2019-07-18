@@ -6,7 +6,7 @@ using System.Text;
 
 namespace VirtoCommerce.OrderBot.Infrastructure
 {
-    public class HmacUtility
+    public static class HmacUtility
     {
         public const string NameValueSeparator = "=";
         public const string ParameterSeparator = "&";
@@ -139,27 +139,24 @@ namespace VirtoCommerce.OrderBot.Infrastructure
             if (input != null)
             {
                 var parts = input.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
-                if (parts.Length == 3)
+                if (parts.Length == 3 && parts[2].Length == 64)
                 {
-                    if (parts[2].Length == 64)
+                    DateTime timestamp;
+                    if (DateTime.TryParseExact(
+                        parts[1],
+                        "o",
+                        CultureInfo.InvariantCulture,
+                        DateTimeStyles.AdjustToUniversal,
+                        out timestamp))
                     {
-                        DateTime timestamp;
-                        if (DateTime.TryParseExact(
-                            parts[1],
-                            "o",
-                            CultureInfo.InvariantCulture,
-                            DateTimeStyles.AdjustToUniversal,
-                            out timestamp))
+                        parsedValue = new ApiRequestSignature
                         {
-                            parsedValue = new ApiRequestSignature
-                            {
-                                AppId = parts[0],
-                                TimestampString = parts[1],
-                                Hash = parts[2],
-                                Timestamp = timestamp,
-                            };
-                            success = true;
-                        }
+                            AppId = parts[0],
+                            TimestampString = parts[1],
+                            Hash = parts[2],
+                            Timestamp = timestamp,
+                        };
+                        success = true;
                     }
                 }
             }

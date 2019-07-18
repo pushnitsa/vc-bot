@@ -8,8 +8,6 @@ namespace VirtoCommerce.OrderBot.Builder
     {
         Task AddCartItemAsync(dto.LineItem lineItem, int quantity);
 
-        Task<dto.LineItem[]> GetLineItemsFromCartAsync();
-
         Task SaveCartAsync();
 
         Task RemoveCartAsync();

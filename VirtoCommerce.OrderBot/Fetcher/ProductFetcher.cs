@@ -6,6 +6,7 @@ using VirtoCommerce.OrderBot.AutoRestClients.PricingModuleApi;
 using VirtoCommerce.OrderBot.AutoRestClients.PricingModuleApi.Models;
 using VirtoCommerce.OrderBot.Bots.Models;
 using VirtoCommerce.OrderBot.Bots.Models.Converters;
+using VirtoCommerce.OrderBot.Extensions;
 using Product = VirtoCommerce.OrderBot.Bots.Models.Product;
 
 namespace VirtoCommerce.OrderBot.Fetcher
@@ -27,7 +28,7 @@ namespace VirtoCommerce.OrderBot.Fetcher
 
             var products = new List<Product>();
 
-            if (result.Items != null)
+            if (!result.Items.IsNullOrEmpty())
             {
                 var evaluationContext = new PriceEvaluationContext
                 {

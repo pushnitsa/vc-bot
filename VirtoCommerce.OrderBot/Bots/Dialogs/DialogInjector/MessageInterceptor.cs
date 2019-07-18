@@ -6,9 +6,9 @@ namespace VirtoCommerce.OrderBot.Bots.Dialogs.DialogInjector
 {
     public class MessageInterceptor : IMessageInterceptor
     {
-        private readonly IMessageHandlerReciever _messageHandlerReciever;
+        private readonly IMessageHandlerReceiver _messageHandlerReciever;
 
-        public MessageInterceptor(IMessageHandlerReciever messageHandlerReciever)
+        public MessageInterceptor(IMessageHandlerReceiver messageHandlerReciever)
         {
             _messageHandlerReciever = messageHandlerReciever;
         }

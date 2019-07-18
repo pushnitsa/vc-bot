@@ -10,7 +10,8 @@ namespace VirtoCommerce.OrderBot.Bots.Models.Converters
             return new api.ProductSearchCriteria
             {
                 Take = criteria.Take,
-                SearchPhrase = criteria.SearchPhrase
+                SearchPhrase = criteria.SearchPhrase,
+                StoreId = criteria.StoreId
             };
         }
     }

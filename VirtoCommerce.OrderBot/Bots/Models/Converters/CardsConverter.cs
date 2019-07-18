@@ -35,7 +35,7 @@ namespace VirtoCommerce.OrderBot.Bots.Models.Converters
                     {
                         new CardImage(l.ImgUrl)
                     },
-                    Title = $"{l.Name}{Environment.NewLine}SKU: {l.Code}{Environment.NewLine}Price: **{l.Price * l.Quantity} {l.Currency}**{Environment.NewLine}Quantity:{l.Quantity}",
+                    Title = $"{l.Name}{Environment.NewLine}SKU: {l.Code}{Environment.NewLine}Price: **{l.Price * l.Quantity} {l.Currency}**{Environment.NewLine}Quantity: {l.Quantity}",
                 })
                 .ToArray();
         }

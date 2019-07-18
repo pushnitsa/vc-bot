@@ -53,11 +53,12 @@ namespace VirtoCommerce.OrderBot.Bots.Dialogs
 
             using (var cartBuilder = _cartBuilderFactory.Create(userProfile.Customer))
             {
-                var lineItems = await cartBuilder.GetLineItemsFromCartAsync();
+                var cart = await cartBuilder.GetCartAsync();
 
-                var cards = lineItems.GetCards();
+                var cards = cart.Items.GetCards();
 
                 await stepContext.Context.SendActivityAsync(MessageFactory.Carousel(cards.Select(c => c.ToAttachment())), cancellationToken);
+                await stepContext.Context.SendActivityAsync(MessageFactory.Text($"Cart total: {cart.Total} {cart.Currency}"), cancellationToken);
             }
 
             return await stepContext.NextAsync(cancellationToken: cancellationToken);
@@ -94,7 +95,7 @@ namespace VirtoCommerce.OrderBot.Bots.Dialogs
 
                     await cartBuilder.RemoveCartAsync();
 
-                    await stepContext.Context.SendActivityAsync(MessageFactory.Text($"Order created it's number: {order.Number}"), cancellationToken);
+                    await stepContext.Context.SendActivityAsync(MessageFactory.Text($"Order created. Its number: {order.Number}{Environment.NewLine}Amount: {order.Total} {order.Currency}"), cancellationToken);
                 }
             }
 

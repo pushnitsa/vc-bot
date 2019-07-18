@@ -22,7 +22,12 @@ namespace VirtoCommerce.OrderBot.Bots.Dialogs
 
             var dialogInstance = innerDc.Stack.FirstOrDefault();
 
-            if (dialogInstance != null && (!dialogInstance.State?.ContainsKey("dialogs") ?? false))
+            bool HaveStateAndContainsDialogs(DialogInstance instance)
+            {
+                return instance?.State != null && !instance.State.ContainsKey("gialogs");
+            }
+            
+            if (HaveStateAndContainsDialogs(dialogInstance))
             {
                 var result = await _messageInterceptor.InterceptAsync(message.Trim(), innerDc, cancellationToken);
 
